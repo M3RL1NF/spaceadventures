@@ -1,4 +1,13 @@
 /* css styling for index.html */
+
+/* open font */
+@font-face {
+    font-family: 'Aquire';
+    src: url('fonts/aquire.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* element-styling */
 html, body {
     font-family: 'Century Gothic', sans-serif;
