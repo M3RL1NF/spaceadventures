@@ -9,7 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            populateTable(data);
+            let parsedData = JSON.parse(data.data); 
+            populateTable(parsedData);
+            if (data.visible) {
+                showAlert(data.message, data.success);
+            }
         })
         .catch(error => {
             console.error('Error:', error);
@@ -23,8 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            populateTable(data);
-            
+            populateTable(data.data);
+            if (data.visible) {
+                showAlert(data.message, data.success);
+            }
         })
         .catch(error => {
             console.error('Error:', error);
@@ -36,8 +42,10 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(`php/http.php?action=delete&uuid=${uuid}`, {
             method: 'DELETE',
         })
-        .then(function() {
+        .then(response => response.json())
+        .then(data => {
             getMissions();
+            showAlert(data.message, data.success);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -49,8 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch('php/http.php?action=delete', {
             method: 'DELETE',
         })
-        .then(function() {
+        .then(response => response.json())
+        .then(data => {
             getMissions();
+            showAlert(data.message, data.success);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -161,16 +171,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
-                        getMissions();
-                    } else if (Array.isArray(data.errors)) {
-                        customAlert(data.errors.join('\n'));
-                    } else {
-                        console.error('Error')
-                    }
+                    getMissions();
+                    showAlert(data.message, data.success);
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    showAlert('Error: ' + error, false);
                 });
             }
         }
@@ -272,17 +277,17 @@ document.addEventListener("DOMContentLoaded", function () {
         var payload = obj.payload ? obj.payload.trim() : '';
         var description = obj.description ? obj.description.trim() : '';
         if (name === "" || id === "" || payload === "" || description === "") {
-            customAlert("All fields must be filled out.");
+            customPrompt("All fields must be filled out.");
             getMissions();
             isValid = false;
         }
         if (id !== "" && !/^[0-9a-zA-Z]{7}$/.test(id)) {
-            customAlert("Mission ID must be 7 alphanumeric characters.");
+            customPrompt("Mission ID must be 7 alphanumeric characters.");
             getMissions();
             isValid = false;
         }
         if (manufacturers.some(manufacturer => manufacturer.trim() === "")) {
-            customAlert("Manufacturers array should not contain empty strings.");
+            customPrompt("Manufacturers array should not contain empty strings.");
             getMissions();
             isValid = false;
         }
@@ -342,16 +347,11 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    getMissions();
-                } else if (Array.isArray(data.errors)) {
-                    customAlert(data.errors.join('\n'));
-                } else {
-                    console.error('Error');
-                }
+                getMissions();
+                showAlert(data.message, data.success);
             })
             .catch(error => {
-                console.error('Error:', error);
+                showAlert('Error: ' + error, false);
             });
             cells.forEach(function (cell, index) {
                 if (index !== 5 && index !== 6) {
@@ -376,21 +376,21 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // replace the default alert function 
-    function customAlert(message) {
+    // replace the default prompt function 
+    function customPrompt(message) {
         var modal = document.createElement('div');
-        modal.classList.add('custom-alert-modal');
+        modal.classList.add('custom-prompt-modal');
     
-        var alertBox = document.createElement('div');
-        alertBox.classList.add('custom-alert-box');
+        var promptBox = document.createElement('div');
+        promptBox.classList.add('custom-prompt-box');
     
         var heading = document.createElement('h2');
         heading.textContent = 'ERROR';
-        alertBox.appendChild(heading);
+        promptBox.appendChild(heading);
     
         var messageElement = document.createElement('p');
         messageElement.textContent = message;
-        alertBox.appendChild(messageElement);
+        promptBox.appendChild(messageElement);
     
         var okButton = document.createElement('button');
         okButton.textContent = 'OK';
@@ -398,9 +398,20 @@ document.addEventListener("DOMContentLoaded", function () {
         okButton.addEventListener('click', function() {
             document.body.removeChild(modal);
         });
-        alertBox.appendChild(okButton);
-        modal.appendChild(alertBox);
+        promptBox.appendChild(okButton);
+        modal.appendChild(promptBox);
         document.body.appendChild(modal);
     }
-    
+
+    // show alert message
+    function showAlert(message, success) {
+        var alertBox = document.getElementById('alertMessage');
+        alertBox.textContent = message;
+        alertBox.style.display = 'block';
+        var alertColor = success ? 'alert-success' : 'alert-danger';
+        alertBox.className = 'alert ' + alertColor;
+        setTimeout(function () {
+            alertBox.style.display = 'none';
+        }, 8000);
+    }
 });

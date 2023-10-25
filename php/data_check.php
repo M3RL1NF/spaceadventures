@@ -30,7 +30,8 @@ function populateDataIfNeeded($file) {
 }
 
 ensureMissionsFileExists($missionsFile);
-fetchDataIfNeeded($missionsFile);
 populateDataIfNeeded($missionsFile);
+// avoid api for offline usage
+// fetchDataIfNeeded($missionsFile);
 
 ?>

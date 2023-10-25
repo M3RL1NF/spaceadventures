@@ -29,14 +29,19 @@ function getRequest() {
     $action = $_GET['action'] ?? '';
     if ($action === 'get') {
         $missions = getAllMissions();
-        echo json_encode($missions);
+        $response = array('message' => 'Missions retrieved successfully', 'success' => true, 'visible' => false, 'data' => $missions);
+        echo json_encode($response);
         http_response_code(200);
     } elseif ($action === 'fetch') {
         file_put_contents(MISSIONS_FILE_PATH, '');
         require_once('data_check.php');
-        echo file_get_contents(MISSIONS_FILE_PATH);
+        $data = file_get_contents(MISSIONS_FILE_PATH);
+        $response = array('message' => 'Missions fetched successfully', 'success' => true, 'visible' => true, 'data' => $data);
+        echo json_encode($response);
         http_response_code(200);
     } else {
+        $response = array('message' => 'Invalid action', 'success' => false, 'visible' => true);
+        echo json_encode($response);
         http_response_code(400);
     }
 }
@@ -46,10 +51,12 @@ function postRequest() {
     $data = json_decode(file_get_contents('php://input'), true);
     $result = createMission($data);
     if ($result['success']) {
-        echo json_encode(['success' => true, 'message' => 'Mission created successfully']);
+        $response = array('message' => 'Mission created successfully', 'success' => true, 'data' => $result);
+        echo json_encode($response);
         http_response_code(200);
     } else {
-        echo json_encode(['success' => false, 'errors' => $result['errors']]);
+        $response = array('message' => 'Failed to create mission', 'success' => false);
+        echo json_encode($response);
         http_response_code(400);
     }
 }
@@ -58,11 +65,13 @@ function postRequest() {
 function putRequest() {
     $data = json_decode(file_get_contents('php://input'), true);
     $result = updateMission($data);
-    if (isset($result['success']) && $result['success']) {
-        echo json_encode(['success' => true, 'message' => 'Mission updated successfully']);
+    if ($result['success']) {
+        $response = array('message' => 'Mission updated successfully', 'success' => true, 'data' => $result);
+        echo json_encode($response);
         http_response_code(200);
     } else {
-        echo json_encode(['success' => false, 'errors' => $result['errors']]);
+        $response = array('message' => 'Failed to update mission', 'success' => false);
+        echo json_encode($response);
         http_response_code(400);
     }
 }
@@ -71,10 +80,14 @@ function putRequest() {
 function deleteRequest() {
     if (isset($_GET['uuid'])) {
         $id = $_GET['uuid'];
-        deleteMission($id);
+        $result = deleteMission($id);
+        $message = 'Mission deleted successfully';
     } else {
-        deleteMissions();
+        $result = deleteMissions();
+        $message = 'Missions deleted successfully';
     }
+    $response = array('message' => $message, 'success' => true);
+    echo json_encode($response);
     http_response_code(200);
 }
 

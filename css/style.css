@@ -18,6 +18,7 @@ html, body {
 
 main {
     padding-top: 75px;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -34,7 +35,6 @@ header {
     font-size: 120%;
     background-color: rgb(18, 18, 18);
     color: white;
-    padding: 15px;
     position: fixed;
     margin: 0;
     padding: 0;
@@ -104,7 +104,6 @@ th, td {
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 input[type="text"] {
@@ -121,6 +120,31 @@ input[type="text"]:focus {
 }
 
 /* class-styling */
+.alert {
+    margin-top: 30px;
+    display: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.indented-text {
+    margin-left: 100px;
+}
+
 .content {
     margin-top: 1%;
     margin-bottom: 150px;
@@ -131,6 +155,7 @@ input[type="text"]:focus {
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
+    padding: 10px;
 }
 
 .editable {
@@ -186,8 +211,9 @@ input[type="text"]:focus {
 }
 
 .action-button {
+    display: block;
+    justify-content: space-between;
     margin-top: 2%;
-    display: flex;
 }
 
 .action-button button {
@@ -198,46 +224,56 @@ input[type="text"]:focus {
     font-size: 140%;
 }
 
-/* id-styling */
-#missions {
+.custom-prompt-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
+.custom-prompt-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 50px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.custom-prompt-box p {
+    margin: 0 0 10px;
+}
+
+.custom-prompt-box button {
+    margin-top: 20px;
+    background-color: rgb(18, 18, 18);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* id-styling */
+#missions {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+}
+
 #missionTable {
-    overflow-x: scroll;
     white-space: nowrap;
-}
-
-#missionTable th:nth-child(1), 
-#missionTable td:nth-child(1) {
-    width: 15%;
-}
-
-#missionTable th:nth-child(2), 
-#missionTable td:nth-child(2) {
-    width: 10%;
-}
-
-#missionTable th:nth-child(3), 
-#missionTable td:nth-child(3) {
-    width: 15%;
-}
-
-#missionTable th:nth-child(4),
-#missionTable td:nth-child(4) {
-    width: 20%;
-}
-
-#missionTable th:nth-child(5), 
-#missionTable td:nth-child(5) {
-    width: 30%;
-}
-
-#missionTable th:nth-child(6), 
-#missionTable td:nth-child(6),
-#missionTable th:nth-child(7), 
-#missionTable td:nth-child(7) {
-    width: 5%;
+    width: 100%;
+    table-layout: fixed;
+    overflow-x: hidden;
 }
 
 #burger-menu {
@@ -273,112 +309,98 @@ input[type="text"]:focus {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* To make the scrollbar always visible */
-#missionTable::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 12px;
-}
-
-#missionTable::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    border: 3px solid white; /* Use the same color as your background */
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-#missionTable::-webkit-scrollbar-track {
-    background-color: white; /* Use the same color as your background */
-}
-
 /* media queries */
 /* 321p resolution */
-@media (min-width: 0px) and (max-width: 321px) {
+@media (min-width: 0px) and (max-width: 322px) {
+    header h1 {
+        font-size: 100%;
+    }
     #burger-menu {
         display: block;
     }
     nav ul {
         display: none;
     }
-    .container {
-        width: 100%;
-    }
-    body {
-        font-size: 10px; 
-    }
     table button {
         font-size: 10px;
         width: 105px;
-    }
-    th, td {
-        max-width: 50px;
     }
     button {
         font-size: 10px;
         border-radius: 3px;
         width: 120px;
     }
-    table button {
-        width: 60px;
-        font-size: 8px;
-    }
     img {
         display: none;
+    }
+    #missionTable thead {
+        display: none;
+    }
+    #missionTable tr {
+        display: block;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    #missionTable td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
 /* 376p resolution */
 @media (min-width: 322px) and (max-width: 376px) {
+    header h1 {
+        font-size: 100%;
+    }
     #burger-menu {
         display: block;
     }
     nav ul {
         display: none;
     }
-    .container {
-        width: 100%;
-    }
-    body {
-        font-size: 10px; 
-    }
     table button {
         font-size: 10px;
         width: 105px;
-    }
-    th, td {
-        max-width: 80px;
     }
     button {
         font-size: 10px;
         border-radius: 3px;
         width: 120px;
     }
-    table button {
-        width: 70px;
-    }
     img {
+        width: 300px;
+        width: 300px;
+    }
+    #missionTable thead {
         display: none;
+    }
+    #missionTable tr {
+        display: block;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    #missionTable td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
 /* 426p resolution */
-@media (min-width: 377px) and (max-width: 426px) {
+@media (min-width: 376px) and (max-width: 427px) {
+    header h1 {
+        font-size: 100%;
+    }
     #burger-menu {
         display: block;
     }
     nav ul {
         display: none;
-    }
-    .container {
-        width: 100%;
-    }
-    body {
-        font-size: 10px; 
-    }
-    table button {
-        font-size: 10px;
-        width: 105px;
-    }
-    th, td {
-        max-width: 102px;
     }
     button {
         font-size: 10px;
@@ -389,47 +411,72 @@ input[type="text"]:focus {
         width: 70px;
     }
     img {
+        width: 300px;
+        width: 300px;
+    }
+    #missionTable thead {
         display: none;
+    }
+    #missionTable tr {
+        display: block;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    #missionTable td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
 /* 768p resolution */
 @media (min-width: 427px) and (max-width: 768px) {
+    header h1 {
+        font-size: 120%;
+    }
     #burger-menu {
         display: block;
     }
     nav ul {
         display: none;
     }
-    .container {
-        width: 100%;
-    }
-    body {
-        font-size: 12px; 
-    }
     table button {
         font-size: 12px;
         width: 105px;
-    }
-    th, td {
-        max-width: 93px;
     }
     button {
         font-size: 12px;
         border-radius: 3px;
         width: 145px;
     }
-    table button {
-        width: 93px;
-    }
     img {
-        width: 700px;
-        width: 700px;
+        width: 400px;
+        width: 400px;
+    }
+    #missionTable thead {
+        display: none;
+    }
+    #missionTable tr {
+        display: block;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    #missionTable td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
 /* 1024p resolution */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+    header h1 {
+        font-size: 130%;
+    }
     #burger-menu {
         display: none;
     }
@@ -439,26 +486,35 @@ input[type="text"]:focus {
     #dropdown-menu a {
         display: none;
     }
-    .container {
-        width: 100%;
-    }
-    th, td {
-        max-width: 133px;
-    }
-    body {
-        font-size: 14px; 
-    }
     img {
-        width: 1000px;
-        width: 1000px;
+        width: 700px;
+        width: 700px;
     }
-    table button {
-        width: 133px;
+    #missionTable thead {
+        display: none;
+    }
+    #missionTable tr {
+        display: block;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    #missionTable td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #missionTable td::before {
+        content:attr()
     }
 }
 
 /* 1440p resolution */
-@media (min-width: 1025px) and (max-width: 1440px) {
+@media (min-width: 1024px) and (max-width: 1440px) {
+    header h1 {
+        font-size: 150%;
+    }
     #burger-menu {
         display: none;
     }
@@ -468,26 +524,29 @@ input[type="text"]:focus {
     #dropdown-menu a {
         display: none;
     }
-    .container {
-        max-width: 1025px;
-    }
-    th, td {
-        max-width: 136px;
-    }
-    body {
-        font-size: 14px; 
-    }
     img {
         width: 1000px;
         width: 1000px;
     }
-    table button {
-        width: 130px;
+    #missionTable thead {
+        display: none;
+    }
+    #missionTable tr {
+        display: block;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    #missionTable td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
 /* 3840p resolution */
-@media (min-width: 1441px) and (max-width: 3840px) {
+@media (min-width: 1440px) and (max-width: 3840px) {
     #burger-menu {
         display: none;
     }
@@ -500,12 +559,6 @@ input[type="text"]:focus {
     .container {
         max-width: 1440px;
     }
-    th, td {
-        max-width: 250px;
-    }
-    body {
-        font-size: 14px; 
-    }
     img {
         width: 1000px;
         width: 1000px;
@@ -513,40 +566,35 @@ input[type="text"]:focus {
     table button {
         width: 130px;
     }
-}
-
-.custom-alert-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.custom-alert-box {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 50px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.custom-alert-box p {
-    margin: 0 0 10px;
-}
-
-.custom-alert-box button {
-    margin-top: 20px;
-    background-color: rgb(18, 18, 18);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 0;
+    #missionTable th:nth-child(1), 
+    #missionTable td:nth-child(1) {
+        width: 10%;
+        text-overflow: ellipsis;
+    }
+    #missionTable th:nth-child(2), 
+    #missionTable td:nth-child(2) {
+        width: 10%;
+        text-overflow: ellipsis;
+    }
+    #missionTable th:nth-child(3), 
+    #missionTable td:nth-child(3) {
+        width: 10%;
+        text-overflow: ellipsis;
+    }
+    #missionTable th:nth-child(4),
+    #missionTable td:nth-child(4) {
+        width: 10%;
+        text-overflow: ellipsis;
+    }
+    #missionTable th:nth-child(5), 
+    #missionTable td:nth-child(5) {
+        width: 40%;
+        text-overflow: ellipsis;
+    }
+    #missionTable th:nth-child(6), 
+    #missionTable td:nth-child(6),
+    #missionTable th:nth-child(7), 
+    #missionTable td:nth-child(7) {
+        width: 10%;
+    }
 }
