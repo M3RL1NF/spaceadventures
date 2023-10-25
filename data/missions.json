@@ -20,15 +20,5 @@
             "Payload 3"
         ],
         "description": "Iridium NEXT is the second-generation worldwide network of telecommunications satellites"
-    },
-    "3": {
-        "uuid": "792f30a1-420e-44cb-87c7-de29b8806197",
-        "name": "1",
-        "id": "1234567",
-        "manufacturers": [
-            "199"
-        ],
-        "payload": "1",
-        "description": "1"
     }
 }
