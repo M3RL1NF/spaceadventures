@@ -102,7 +102,7 @@ th {
 th, td {
     padding: 10px;
     text-align: left;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
 }
 
@@ -127,6 +127,7 @@ input[type="text"]:focus {
     padding: 15px;
     border-radius: 5px;
     font-weight: bold;
+    box-sizing: border-box;
 }
 
 .alert-success {
@@ -237,13 +238,16 @@ input[type="text"]:focus {
 }
 
 .custom-prompt-box {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 50px;
+    font-weight: bold;
+    background-color: #ef9fa7;
+    border: 2px solid #dc3545;
+    padding: 10px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    animation: shake 0.5s;
+    max-width: 400px;
 }
 
 .custom-prompt-box p {
@@ -258,6 +262,8 @@ input[type="text"]:focus {
     border-radius: 5px;
     cursor: pointer;
     padding: 0;
+    width: 40%;
+    max-width: 200px;
 }
 
 /* id-styling */
@@ -321,32 +327,58 @@ input[type="text"]:focus {
     nav ul {
         display: none;
     }
-    table button {
-        font-size: 10px;
-        width: 105px;
-    }
-    button {
-        font-size: 10px;
-        border-radius: 3px;
-        width: 120px;
-    }
     img {
         display: none;
     }
     #missionTable thead {
         display: none;
     }
+    #missionTable tbody {
+        display: block;
+    }
     #missionTable tr {
         display: block;
-        border: 2px solid #ddd;
+        border: 1px solid rgb(18, 18, 18);
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 10px;
+        background-color: #e1eade;
     }
     #missionTable td {
         display: block;
         width: 100%;
         box-sizing: border-box;
+        text-overflow: ellipsis;
+    }
+    #missionTable td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 150px;
+    }
+    #missionTable td:nth-child(1)::before {
+        content: 'Mission Name';
+    }
+    #missionTable td:nth-child(2)::before {
+        content: 'Mission ID';
+    }
+    #missionTable td:nth-child(3)::before {
+        content: 'Manufacturers';
+    }
+    #missionTable td:nth-child(4)::before {
+        content: 'Payload';
+    }
+    #missionTable td:nth-child(5)::before {
+        content: 'Description';
+    }
+    #missionTable td:nth-child(6)::before {
+        width: 0px;
+    }
+    #missionTable td:nth-child(7)::before {
+        width: 0px;
+    }
+    .custom-prompt-box {
+        width: 80%;
     }
 }
 
@@ -361,15 +393,6 @@ input[type="text"]:focus {
     nav ul {
         display: none;
     }
-    table button {
-        font-size: 10px;
-        width: 105px;
-    }
-    button {
-        font-size: 10px;
-        border-radius: 3px;
-        width: 120px;
-    }
     img {
         width: 300px;
         width: 300px;
@@ -377,17 +400,52 @@ input[type="text"]:focus {
     #missionTable thead {
         display: none;
     }
+    #missionTable tbody {
+        display: block;
+    }
     #missionTable tr {
         display: block;
-        border: 2px solid #ddd;
+        border: 1px solid rgb(18, 18, 18);
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 10px;
+        background-color: #e1eade;
     }
     #missionTable td {
         display: block;
         width: 100%;
         box-sizing: border-box;
+        text-overflow: ellipsis;
+    }
+    #missionTable td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 150px;
+    }
+    #missionTable td:nth-child(1)::before {
+        content: 'Mission Name';
+    }
+    #missionTable td:nth-child(2)::before {
+        content: 'Mission ID';
+    }
+    #missionTable td:nth-child(3)::before {
+        content: 'Manufacturers';
+    }
+    #missionTable td:nth-child(4)::before {
+        content: 'Payload';
+    }
+    #missionTable td:nth-child(5)::before {
+        content: 'Description';
+    }
+    #missionTable td:nth-child(6)::before {
+        width: 0px;
+    }
+    #missionTable td:nth-child(7)::before {
+        width: 0px;
+    }
+    .custom-prompt-box {
+        width: 70%;
     }
 }
 
@@ -402,14 +460,6 @@ input[type="text"]:focus {
     nav ul {
         display: none;
     }
-    button {
-        font-size: 10px;
-        border-radius: 3px;
-        width: 120px;
-    }
-    table button {
-        width: 70px;
-    }
     img {
         width: 300px;
         width: 300px;
@@ -417,17 +467,52 @@ input[type="text"]:focus {
     #missionTable thead {
         display: none;
     }
+    #missionTable tbody {
+        display: block;
+    }
     #missionTable tr {
         display: block;
-        border: 2px solid #ddd;
+        border: 1px solid rgb(18, 18, 18);
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 10px;
+        background-color: #e1eade;
     }
     #missionTable td {
         display: block;
         width: 100%;
         box-sizing: border-box;
+        text-overflow: ellipsis;
+    }
+    #missionTable td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 150px;
+    }
+    #missionTable td:nth-child(1)::before {
+        content: 'Mission Name';
+    }
+    #missionTable td:nth-child(2)::before {
+        content: 'Mission ID';
+    }
+    #missionTable td:nth-child(3)::before {
+        content: 'Manufacturers';
+    }
+    #missionTable td:nth-child(4)::before {
+        content: 'Payload';
+    }
+    #missionTable td:nth-child(5)::before {
+        content: 'Description';
+    }
+    #missionTable td:nth-child(6)::before {
+        width: 0px;
+    }
+    #missionTable td:nth-child(7)::before {
+        width: 0px;
+    }
+    .custom-prompt-box {
+        width: 70%;
     }
 }
 
@@ -442,15 +527,6 @@ input[type="text"]:focus {
     nav ul {
         display: none;
     }
-    table button {
-        font-size: 12px;
-        width: 105px;
-    }
-    button {
-        font-size: 12px;
-        border-radius: 3px;
-        width: 145px;
-    }
     img {
         width: 400px;
         width: 400px;
@@ -458,17 +534,52 @@ input[type="text"]:focus {
     #missionTable thead {
         display: none;
     }
+    #missionTable tbody {
+        display: block;
+    }
     #missionTable tr {
         display: block;
-        border: 2px solid #ddd;
+        border: 1px solid rgb(18, 18, 18);
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 10px;
+        background-color: #e1eade;
     }
     #missionTable td {
         display: block;
         width: 100%;
         box-sizing: border-box;
+        text-overflow: ellipsis;
+    }
+    #missionTable td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 150px;
+    }
+    #missionTable td:nth-child(1)::before {
+        content: 'Mission Name';
+    }
+    #missionTable td:nth-child(2)::before {
+        content: 'Mission ID';
+    }
+    #missionTable td:nth-child(3)::before {
+        content: 'Manufacturers';
+    }
+    #missionTable td:nth-child(4)::before {
+        content: 'Payload';
+    }
+    #missionTable td:nth-child(5)::before {
+        content: 'Description';
+    }
+    #missionTable td:nth-child(6)::before {
+        width: 0px;
+    }
+    #missionTable td:nth-child(7)::before {
+        width: 0px;
+    }
+    .custom-prompt-box {
+        width: 60%;
     }
 }
 
@@ -493,20 +604,52 @@ input[type="text"]:focus {
     #missionTable thead {
         display: none;
     }
+    #missionTable tbody {
+        display: block;
+    }
     #missionTable tr {
         display: block;
-        border: 2px solid #ddd;
+        border: 1px solid rgb(18, 18, 18);
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 10px;
+        background-color: #e1eade;
     }
     #missionTable td {
         display: block;
         width: 100%;
         box-sizing: border-box;
+        text-overflow: ellipsis;
     }
     #missionTable td::before {
-        content:attr()
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 150px;
+    }
+    #missionTable td:nth-child(1)::before {
+        content: 'Mission Name';
+    }
+    #missionTable td:nth-child(2)::before {
+        content: 'Mission ID';
+    }
+    #missionTable td:nth-child(3)::before {
+        content: 'Manufacturers';
+    }
+    #missionTable td:nth-child(4)::before {
+        content: 'Payload';
+    }
+    #missionTable td:nth-child(5)::before {
+        content: 'Description';
+    }
+    #missionTable td:nth-child(6)::before {
+        width: 0px;
+    }
+    #missionTable td:nth-child(7)::before {
+        width: 0px;
+    }
+    .custom-prompt-box {
+        width: 50%;
     }
 }
 
@@ -531,17 +674,52 @@ input[type="text"]:focus {
     #missionTable thead {
         display: none;
     }
+    #missionTable tbody {
+        display: block;
+    }
     #missionTable tr {
         display: block;
-        border: 2px solid #ddd;
+        border: 1px solid rgb(18, 18, 18);
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 10px;
+        background-color: #e1eade;
     }
     #missionTable td {
         display: block;
         width: 100%;
         box-sizing: border-box;
+        text-overflow: ellipsis;
+    }
+    #missionTable td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 150px;
+    }
+    #missionTable td:nth-child(1)::before {
+        content: 'Mission Name';
+    }
+    #missionTable td:nth-child(2)::before {
+        content: 'Mission ID';
+    }
+    #missionTable td:nth-child(3)::before {
+        content: 'Manufacturers';
+    }
+    #missionTable td:nth-child(4)::before {
+        content: 'Payload';
+    }
+    #missionTable td:nth-child(5)::before {
+        content: 'Description';
+    }
+    #missionTable td:nth-child(6)::before {
+        width: 0px;
+    }
+    #missionTable td:nth-child(7)::before {
+        width: 0px;
+    }
+    .custom-prompt-box {
+        width: 40%;
     }
 }
 
@@ -568,7 +746,7 @@ input[type="text"]:focus {
     }
     #missionTable th:nth-child(1), 
     #missionTable td:nth-child(1) {
-        width: 10%;
+        width: 15%;
         text-overflow: ellipsis;
     }
     #missionTable th:nth-child(2), 
@@ -578,7 +756,7 @@ input[type="text"]:focus {
     }
     #missionTable th:nth-child(3), 
     #missionTable td:nth-child(3) {
-        width: 10%;
+        width: 15%;
         text-overflow: ellipsis;
     }
     #missionTable th:nth-child(4),
@@ -588,7 +766,7 @@ input[type="text"]:focus {
     }
     #missionTable th:nth-child(5), 
     #missionTable td:nth-child(5) {
-        width: 40%;
+        width: 30%;
         text-overflow: ellipsis;
     }
     #missionTable th:nth-child(6), 
@@ -596,5 +774,27 @@ input[type="text"]:focus {
     #missionTable th:nth-child(7), 
     #missionTable td:nth-child(7) {
         width: 10%;
+    }
+    .custom-prompt-box {
+        width: 30%;
+    }
+}
+
+/* add keyframe animation */
+@keyframes shake {
+    10%, 90% {
+        transform: translate(-1px, 0);
+    }
+    
+    20%, 80% {
+        transform: translate(2px, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate(-4px, 0);
+    }
+
+    40%, 60% {
+        transform: translate(4px, 0);
     }
 }
