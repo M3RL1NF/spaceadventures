@@ -266,6 +266,34 @@ input[type="text"]:focus {
     max-width: 200px;
 }
 
+.imprint-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.imprint-table th {
+    margin-top: 100px;
+    font-size: 120%;
+    background-color: #b4afaf;
+}
+
+.imprint-row th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.imprint-row th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.imprint-row th {
+    background-color: rgb(18, 18, 18);
+    color: rgb(255, 255, 255);
+    padding: 10px 20px; 
+    text-align: left;
+}
+
 /* id-styling */
 #missions {
     display: block;
